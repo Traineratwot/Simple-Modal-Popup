@@ -1,0 +1,16 @@
+.SMP-wrap {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0vh;
+    left: 0vw;
+    background-color: #666666;
+    opacity: 0.7;
+    display: none;
+}
+.SMP-wrap .SMP-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
