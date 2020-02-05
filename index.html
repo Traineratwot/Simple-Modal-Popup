@@ -16,6 +16,8 @@
 	<link rel="stylesheet" href="/SMP.css">
 	<script src="/SMP.js"></script>
 </head>
+<input id="fef" type="button" value="" onclick="modal.open()">
+<p><input class="no" type="button" value="нет"></p>
 
 <body>
 	<!--[if lt IE 7]>
@@ -23,19 +25,29 @@
 		<![endif]-->
 
 	<script defer>
-		var template = `
-		<div>Я {t} {h}  {zzzz}</div>
+		var template = {}
+		template.pattern = `
+		<p>Я {t} {h}  {zzzz}</p>
+		<p><input id="yes" type="button" value="Да"></p>
+		<p><input class="no" type="button" value="нет"></p>
 		`;
-		var modal = new SMP(template, null, {
-			css: {
-				"background-color": "#4545fd"
+		template.action = {
+			//{selector:{event,function}}
+			"#yes": { event: "click", function: (event, self, AnyValue) => { console.log(event, self, AnyValue) } },
+			".no": { event: "click", function: (event, self, AnyValue) => { console.log(event, self, AnyValue) } }
+		};
+		var modal = new SMP(template, { t: 'Test', h: "I am CodeGod", zzzz: 1342342342345325 }, {
+			background: {
+				css: {
+					"background-color": "#66666656",
+				},
 			},
-			offset: {
-				top: 200,
-				left: 500
+			popup: {
+				css: {
+					"background-color": "#4545fd"
+				}
 			}
 		});
-		modal.open({ t: 'Test', h: "I am CodeGod", zzzz: 1342342342345325 })
 	</script>
 </body>
 

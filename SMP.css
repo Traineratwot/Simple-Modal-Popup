@@ -4,11 +4,12 @@
     height: 100vh;
     top: 0vh;
     left: 0vw;
-    background-color: #666666;
-    opacity: 0.7;
     display: none;
 }
-.SMP-wrap .SMP-modal.SMP-center {
+.SMP-wrap.SMP-wrap-defult {
+    background-color: #66666656;
+}
+.SMP-wrap .SMP-modal.SMP-modal-center {
     position: fixed;
     top: 50%;
     left: 50%;
