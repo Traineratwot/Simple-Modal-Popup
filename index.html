@@ -27,15 +27,15 @@
 	<script defer>
 		var template = {}
 		template.pattern = `
-		<p>Я {t} {h}  {zzzz}</p>
-		<p><input id="yes" type="button" value="Да"></p>
-		<p><input class="no" type="button" value="нет"></p>
+		<p>Я {t}?</p>
+		<p><input id="yes" type="button" value="{h}"></p>
+		<p><input class="no" type="button" value="{zzzz}"></p>
 		`;
 		template.action = {
 			//{selector:{event,function}}
 			"#yes": {
 				event: "click touch", function: (event, self, AnyValue) => {
-					console.log(event, self, AnyValue)
+					console.log(event.this)
 				}
 			},
 			".no": {

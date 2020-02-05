@@ -64,6 +64,7 @@ class SMP {
 				const e = this.TEMPLATE.action[key];
 				$(`.${this.cls} ${key}`).on(e.event, function (event) {
 					self.events[key] = (event);
+					event.this = this;
 					return e.function(event, self, self.AnyValue)
 				})
 			}
