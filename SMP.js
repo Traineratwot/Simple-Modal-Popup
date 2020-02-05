@@ -14,11 +14,6 @@ class SMP {
 		this.events = {};
 		this.init();
 	}
-	setTemp(TEMPLATE) {
-		this.TEMPLATE = TEMPLATE;
-		this.gen();
-		return this;
-	}
 	init() {
 		var self = this;
 		if (this.body) {
@@ -75,6 +70,11 @@ class SMP {
 		}
 		return this;
 	}
+	/**
+	 * @param  {} AnyValue=null
+	 * @param  {} R=null
+	 * @param  {} OPTION={}
+	 */
 	open(AnyValue = null, R = null, OPTION = {}) {
 		var regen = false;
 		this.AnyValue = AnyValue;
@@ -100,20 +100,20 @@ class SMP {
 	 * @param  {} R=null
 	 */
 	setData(R) {
-		if (R) {
-			this.R = R;
-		}
+		this.R = R;
 		this.gen()
 		return this;
 	}
 	setOption(OPTION) {
-		if (OPTION) {
-			this.R = OPTION;
-		}
+		this.OPTION = OPTION;
 		this.gen()
 		return this;
 	}
-
+	setTemp(TEMPLATE) {
+		this.TEMPLATE = TEMPLATE;
+		this.gen();
+		return this;
+	}
 	strstr(haystack, needle) {	// Find first occurrence of a string
 		for (const k in needle) {
 			if (needle.hasOwnProperty(k)) {
