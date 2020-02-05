@@ -24,10 +24,18 @@
 
 	<script defer>
 		var template = `
-		<div>Я {t} {t}  {t}</div>
+		<div>Я {t} {h}  {zzzz}</div>
 		`;
-		var modal = new SMP(template);
-		modal.open({ t: 'Test' })
+		var modal = new SMP(template, null, {
+			css: {
+				"background-color": "#4545fd"
+			},
+			offset: {
+				top: 200,
+				left: 500
+			}
+		});
+		modal.open({ t: 'Test', h: "I am CodeGod", zzzz: 1342342342345325 })
 	</script>
 </body>
 

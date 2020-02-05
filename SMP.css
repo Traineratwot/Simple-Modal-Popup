@@ -8,7 +8,7 @@
     opacity: 0.7;
     display: none;
 }
-.SMP-wrap .SMP-modal {
+.SMP-wrap .SMP-modal.SMP-center {
     position: fixed;
     top: 50%;
     left: 50%;

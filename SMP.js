@@ -1,8 +1,13 @@
 /*jshint esversion: 6 */
 class SMP {
-
-	constructor(TEMPLATE = null, R = null) {
+	/**
+	 * @param  {} TEMPLATE=null
+	 * @param  {} R=null
+	 * @param  {} OPTION={}
+	 */
+	constructor(TEMPLATE = null, R = null, OPTION = {}) {
 		this.R = R;
+		this.OPTION = OPTION;
 		this.TEMPLATE = TEMPLATE;
 		this.init();
 		this.FadeDurability = 500;
@@ -16,19 +21,48 @@ class SMP {
 		if (this.body) {
 			this.body.remove();
 		}
-		$('.SMP-wrap').remove();
 		this.body = $(`<div class="SMP-wrap">`).appendTo('body');
-		return this;
+
 	}
-	open(R = null) {
-		if (R) {
-			this.R = R;
-		}
+	/**
+	 * @param  {} R=null
+	 * @param  {} OPTION={}
+	 */
+	gen() {
 		if (!this.ativity) {
 			this.HTML = this.strstr(this.TEMPLATE, this.R);
-			this.modal = $(`<div class="SMP-modal">`).appendTo(this.body);
+			if (Object.keys(this.OPTION).length) {
+				this.modal = $(`<div class="SMP-modal SMP-custom">`).appendTo(this.body);
+				if (this.OPTION.css) {
+					this.modal.css(this.OPTION.css)
+				}
+				if (this.OPTION.offset) {
+					this.modal.offset(this.OPTION.offset)
+				}
+				// if (this.OPTION.css) {
+				// 	this.modal.css(this.OPTION.css)
+				// }
+
+			} else {
+				this.modal = $(`<div class="SMP-modal SMP-center">`).appendTo(this.body);
+			}
 			this.modal.html("");
 			this.ativity = $(this.HTML).appendTo(this.modal);
+		}
+		return this;
+	}
+	open(R = null, OPTION = {}) {
+		var regen = false;
+		if (R) {
+			this.R = R;
+			regen = true;
+		}
+		if (Object.keys(OPTION).length) {
+			this.OPTION = OPTION;
+			regen = true;
+		}
+		if (regen) {
+			this.gen()
 		}
 		this.body.fadeIn(this.FadeDurability);
 		return this;
@@ -37,6 +71,9 @@ class SMP {
 		this.body.fadeOut(this.FadeDurability);
 		return this;
 	}
+	/**
+	 * @param  {} R=null
+	 */
 	change(R = null) {
 		if (R) {
 			this.R = R;
