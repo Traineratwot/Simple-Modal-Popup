@@ -47,6 +47,7 @@ class SMP {
 		var self = this;
 		this.HTML = this.strstr(this.TEMPLATE.pattern, this.R);
 		if (Object.keys(this.OPTION.popup).length) {
+			this.body.html("");
 			this.modal = $(`<div class="SMP-modal SMP-modal-custom">`).appendTo(this.body);
 			if (this.OPTION.popup.css) {
 				this.modal.css(this.OPTION.popup.css)
