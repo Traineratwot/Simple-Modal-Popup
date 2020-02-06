@@ -5,21 +5,25 @@ class SMP {
 	 * @param  {} R=null
 	 * @param  {} OPTION={}
 	 */
-	constructor(TEMPLATE = null, R = null, OPTION = {}) {
+	constructor(TEMPLATE = null, R = null, OPTION = { popup: {}, background: {} }, onOpen = () => { }) {
 		this.R = R;
 		this.OPTION = OPTION;
 		this.TEMPLATE = TEMPLATE;
 		this.cls = this.makeRandomClass(5);
 		this.FadeDurability = 500;
 		this.events = {};
+		this.onOpen = onOpen
 		this.init();
 	}
 	init() {
+		if (!this.OPTION) {
+			this.OPTION = { popup: {}, background: {} };
+		}
 		var self = this;
 		if (this.body) {
 			this.body.remove();
 		}
-		if (this.OPTION.background) {
+		if (Object.keys(this.OPTION.background).length) {
 			this.body = $(`<div class="${this.cls} SMP-wrap SMP-wrap-custom">`).appendTo('body');
 			this.body.css(this.OPTION.background.css)
 		} else {
@@ -31,7 +35,9 @@ class SMP {
 				self.close()
 			}
 		})
-		this.gen()
+		if (this.TEMPLATE) {
+			this.gen()
+		}
 	}
 	/**
 	 * @param  {} R=null
@@ -76,11 +82,15 @@ class SMP {
 	 * @param  {} R=null
 	 * @param  {} OPTION={}
 	 */
-	open(AnyValue = null, R = null, OPTION = {}) {
+	open(AnyValue = null, R = null, OPTION = {}, ) {
+		if (!this.OPTION) {
+			this.OPTION = { popup: {}, background: {} };
+		}
+
 		var regen = false;
 		this.AnyValue = AnyValue;
 		if (R) {
-			this.R = R;
+			this.R = $.extend(this.R, R);
 			regen = true;
 		}
 		if (Object.keys(OPTION).length) {
@@ -88,6 +98,10 @@ class SMP {
 			regen = true;
 		}
 		if (regen) {
+			this.gen()
+		}
+		this.onOpenResponce = this.onOpen(this);
+		if (this.onOpenResponce) {
 			this.gen()
 		}
 		this.body.fadeIn(this.FadeDurability);
@@ -101,7 +115,7 @@ class SMP {
 	 * @param  {} R=null
 	 */
 	setData(R) {
-		this.R = R;
+		this.R = $.extend(this.R, R)
 		this.gen()
 		return this;
 	}
