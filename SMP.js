@@ -10,7 +10,7 @@ class SMP {
 		this.OPTION = OPTION;
 		this.TEMPLATE = TEMPLATE;
 		this.cls = this.makeRandomClass(5);
-		this.FadeDurability = 500;
+		this.FadeDuration = 500;
 		this.events = {};
 		this.onOpen = onOpen
 		this.init();
@@ -104,11 +104,11 @@ class SMP {
 		if (this.onOpenResponce) {
 			this.gen()
 		}
-		this.body.fadeIn(this.FadeDurability);
+		this.body.fadeIn(this.FadeDuration);
 		return this;
 	}
 	close() {
-		this.body.fadeOut(this.FadeDurability);
+		this.body.fadeOut(this.FadeDuration);
 		return this;
 	}
 	/**
