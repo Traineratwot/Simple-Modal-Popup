@@ -25,7 +25,12 @@ class SMP {
 		}
 		if (Object.keys(this.OPTION.background).length) {
 			this.body = $(`<div class="${this.cls} SMP-wrap SMP-wrap-custom">`).appendTo('body');
-			this.body.css(this.OPTION.background.css)
+			if (this.OPTION.background.css) {
+				this.body.css(this.OPTION.background.css)
+			}
+			if (this.OPTION.background.cls) {
+				this.body.addClass(this.OPTION.background.cls)
+			}
 		} else {
 			this.body = $(`<div class="${this.cls} SMP-wrap SMP-wrap-defult">`).appendTo('body');
 		}
